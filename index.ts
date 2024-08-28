@@ -1,81 +1,109 @@
-// Define a classe Post
+import { v4 as uuidv4 } from "uuid";
+import { faker } from "@faker-js/faker";
+
 class Post {
-  // Propriedades privadas da classe
-  private _userName: string; // Nome de usuário do post
-  private _imageUrl: string; // URL da imagem do post
-  private _numLikes: number; // Número de curtidas no post
-  private _description: string; // Descrição do post
+  private _id: string;
+  private _userName: string;
+  private _imageUrl: string;
+  private _numLikes: number;
+  private _description: string;
+  private _userAvatarUrl: string;
+  private _music: string;
 
-  // Construtor da classe, inicializa as propriedades
-  constructor(userName: string, imageUrl: string, description: string) {
-    this._userName = userName; // Inicializa o nome do usuário
-    this._imageUrl = imageUrl; // Inicializa a URL da imagem
-    this._numLikes = 0; // Inicializa o número de curtidas como 0
-    this._description = description; // Inicializa a descrição
+  constructor(
+    userName: string,
+    imageUrl: string,
+    description: string,
+    userAvatarUrl: string,
+    music: string
+  ) {
+    this._id = uuidv4();
+    this._userName = userName;
+    this._imageUrl = imageUrl;
+    this._numLikes = 0;
+    this._description = description;
+    this._userAvatarUrl = userAvatarUrl;
+    this._music = music;
   }
 
-  // Método para incrementar o número de curtidas
   incrementLike() {
-    this.numLikes += 1; // Aumenta o número de curtidas em 1
+    this._numLikes += 1;
   }
 
-  // Getter para a propriedade _userName
+  public get id(): string {
+    return this._id;
+  }
+
   public get userName(): string {
-    return this._userName; // Retorna o nome de usuário
+    return this._userName;
   }
 
-  // Setter para a propriedade _userName
   public set userName(value: string) {
-    this._userName = value; // Define um novo valor para o nome de usuário
+    this._userName = value;
   }
 
-  // Getter para a propriedade _imageUrl
   public get imageUrl(): string {
-    return this._imageUrl; // Retorna a URL da imagem
+    return this._imageUrl;
   }
 
-  // Setter para a propriedade _imageUrl
   public set imageUrl(value: string) {
-    this._imageUrl = value; // Define um novo valor para a URL da imagem
+    this._imageUrl = value;
   }
 
-  // Getter para a propriedade _numLikes
+  public get userAvatarUrl(): string {
+    return this._userAvatarUrl;
+  }
+  public set userAvatarUrl(value: string) {
+    this._userAvatarUrl = value;
+  }
+
+  public get music(): string {
+    return this._music;
+  }
+  public set music(value: string) {
+    this._music = value;
+  }
+
   public get numLikes(): number {
-    return this._numLikes; // Retorna o número de curtidas
+    return this._numLikes;
   }
 
-  // Setter para a propriedade _numLikes
   public set numLikes(value: number) {
-    this._numLikes = value; // Define um novo valor para o número de curtidas
+    this._numLikes = value;
   }
 
-  // Getter para a propriedade _description
   public get description(): string {
-    return this._description; // Retorna a descrição
+    return this._description;
   }
 
-  // Setter para a propriedade _description
   public set description(value: string) {
-    this._description = value; // Define uma nova descrição
+    this._description = value;
   }
 
-  // Método para mostrar as informações do post
-  showInfo() {
-    // Exibe as informações do post no console
-    console.log(
-      `Username: ${this.userName}, URL da Imagem: ${this.imageUrl}, numLikes: ${this.numLikes}, Descrição: ${this.description}`
-    );
+  public showInfo() {
+    console.log("--- Post Information ---");
+    console.log(`ID:               ${this.id}`);
+    console.log(`Username:         ${this.userName}`);
+    console.log(`Image URL:        ${this.imageUrl}`);
+    console.log(`Number of Likes:  ${this.numLikes}`);
+    console.log(`Description:      ${this.description}`);
+    console.log(`Music: ${this._music}`);
+    console.log("-----------------------");
   }
 }
 
-const x = new Post("Davi123", "sesesese", "bomdimai");
+const generatePost = (): Post => {
+  return new Post(
+    faker.internet.userName(),
+    faker.image.url(),
+    faker.lorem.sentence(),
+    faker.image.avatar(),
+    faker.music.genre()
+  );
+};
 
-console.log(x);
+const numberOfPosts = 15;
+const posts: Post[] = Array.from({ length: numberOfPosts }, generatePost);
 
-x.incrementLike();
+posts.forEach((post) => post.showInfo());
 
-console.log(x);
-
-x.incrementLike();
-
-x.showInfo();
