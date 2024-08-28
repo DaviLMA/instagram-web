@@ -1,0 +1,85 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  
+}
+
+.icone-acao {
+width: 24px; 
+height: 24px;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.postagem {
+width: 300px;
+border: 1px solid #dbdbdb;
+border-radius: 3px;
+background-color: #fff;
+}
+
+.cabecalho-postagem {
+display: flex;
+align-items: center;
+padding: 10px;
+border-bottom: 1px solid #dbdbdb;
+}
+
+.foto-perfil {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: #bbb;
+margin-right: 10px;
+}
+
+.nome-usuario {
+font-weight: bold;
+}
+
+.btn-seguir {
+margin-left: auto;
+color: #3897f0;
+font-weight: bold;
+border: none;
+background: none;
+cursor: pointer;
+}
+
+.imagem-postagem {
+width: 100%;
+height: auto;
+}
+
+.rodape-postagem {
+padding: 10px;
+}
+
+.acoes-postagem {
+display: flex;
+align-items: center;
+}
+
+.acoes-postagem i {
+font-size: 24px;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.curtidas {
+font-weight: bold;
+margin-top: 5px;
+}
+
+.descricao {
+margin-top: 10px;
+}
+
+.hashtags {
+color: #00376b;
+}
