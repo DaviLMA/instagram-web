@@ -6,80 +6,124 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  
+  flex-direction: column;
 }
 
-.icone-acao {
-width: 24px; 
-height: 24px;
-margin-right: 10px;
-cursor: pointer;
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 2000px;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-items {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  scroll-behavior: smooth;
 }
 
 .postagem {
-width: 300px;
-border: 1px solid #dbdbdb;
-border-radius: 3px;
-background-color: #fff;
+  flex: 0 0 100%; /* Ajusta a largura para que cada postagem ocupe 100% da área visível */
+  max-width: 500px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  background-color: #fff;
+  overflow: hidden;
+  margin: 0 10px; /* Espaço entre as postagens */
 }
 
 .cabecalho-postagem {
-display: flex;
-align-items: center;
-padding: 10px;
-border-bottom: 1px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .foto-perfil {
-width: 40px;
-height: 40px;
-border-radius: 50%;
-background-color: #bbb;
-margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #bbb;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
 }
 
 .nome-usuario {
-font-weight: bold;
+  font-weight: bold;
 }
 
 .btn-seguir {
-margin-left: auto;
-color: #3897f0;
-font-weight: bold;
-border: none;
-background: none;
-cursor: pointer;
+  margin-left: auto;
+  color: #3897f0;
+  font-weight: bold;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .imagem-postagem {
-width: 100%;
-height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .rodape-postagem {
-padding: 10px;
+  padding: 10px;
 }
 
 .acoes-postagem {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 
-.acoes-postagem i {
-font-size: 24px;
-margin-right: 10px;
-cursor: pointer;
+.icone-acao {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .curtidas {
-font-weight: bold;
-margin-top: 5px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 .descricao {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 .hashtags {
-color: #00376b;
+  color: #00376b;
+}
+
+.prev-btn, .next-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
 }

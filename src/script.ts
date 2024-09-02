@@ -31,6 +31,7 @@ class Post {
     this._numLikes += 1;
   }
 
+  // Getters and Setters
   public get id(): string {
     return this._id;
   }
@@ -71,35 +72,33 @@ class Post {
     this._description = value;
   }
 
-  // Método para criar o HTML do post
-  public toHTML(): string {
+  toHTML() {
     return `
-            <div class="postagem">
-                <div class="cabecalho-postagem">
-                    <div class="foto-perfil" style="background-image: url('${this.userAvatarUrl}');"></div>
-                    <span class="nome-usuario">${this.userName}</span>
-                    <button class="btn-seguir">SEGUIR</button>
-                </div>
-                <img src="${this.imageUrl}" alt="Imagem da Postagem" class="imagem-postagem">
-                <div class="rodape-postagem">
-                    <div class="acoes-postagem">
-                        <img src="./icons/icone-curtir-instagram.png" alt="Curtir" class="icone-acao">
-                        <img src="./icons/icone-comentar-instagram.png" alt="Comentar" class="icone-acao">
-                        <img src="./icons/icone-direct-instagram.png" alt="Compartilhar" class="icone-acao">
-                    </div>
-                    <div class="curtidas">${this.numLikes} curtidas</div>
-                    <div class="descricao">
-                        ${this.description}
-                        <span class="hashtags">#ImagemGeradaPorIA #por-do-sol</span>
-                    </div>
-                </div>
-            </div>
-        `;
+      <div class="postagem">
+        <div class="cabecalho-postagem">
+          <div class="foto-perfil" style="background-image: url('${this._userAvatarUrl}');"></div>
+          <span class="nome-usuario">${this._userName}</span>
+          <button class="btn-seguir">SEGUIR</button>
+        </div>
+        <img src="${this._imageUrl}" alt="Imagem da Postagem" class="imagem-postagem">
+        <div class="rodape-postagem">
+          <div class="acoes-postagem">
+            <img src="./icons/icone-curtir-instagram.png" alt="Curtir" class="icone-acao">
+            <img src="./icons/icone-comentar-instagram.png" alt="Comentar" class="icone-acao">
+            <img src="./icons/icone-direct-instagram.png" alt="Compartilhar" class="icone-acao">
+          </div>
+          <div class="curtidas">${this._numLikes} curtidas</div>
+          <div class="descricao">
+            ${this._description}
+            <span class="hashtags">#ImagemGeradaPorIA #por-do-sol</span>
+          </div>
+        </div>
+      </div>
+    `;
   }
 }
 
-// Função para gerar um novo post
-const generatePost = (): Post => {
+const generatePost = () => {
   return new Post(
     faker.internet.userName(),
     faker.image.url(),
@@ -109,16 +108,52 @@ const generatePost = (): Post => {
   );
 };
 
-// Adiciona os posts ao contêiner
+type ScrollDirection = "next" | "prev";
+
+const scrollCarousel = (direction: ScrollDirection) => {
+  const container = document.querySelector(".carousel-items");
+
+  // Ensure the container exists
+  if (container) {
+    const scrollAmount = container.clientWidth; // Adjust scrollAmount as needed
+
+    if (direction === "next") {
+      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    } else if (direction === "prev") {
+      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    }
+  } else {
+    console.error("Carousel container not found.");
+  }
+};
+
+// Ensure buttons exist before adding event listeners
+const prevButton = document.querySelector(".prev-btn");
+const nextButton = document.querySelector(".next-btn");
+
+if (prevButton) {
+  prevButton.addEventListener("click", () => scrollCarousel("prev"));
+} else {
+  console.error("Previous button not found.");
+}
+
+if (nextButton) {
+  nextButton.addEventListener("click", () => scrollCarousel("next"));
+} else {
+  console.error("Next button not found.");
+}
+
+// Function to add posts to the container (example provided earlier)
 const addPostsToContainer = () => {
   const numberOfPosts = 15;
-  const posts: Post[] = Array.from({ length: numberOfPosts }, generatePost);
+  const posts = Array.from({ length: numberOfPosts }, generatePost);
 
   const container = document.getElementById("posts-container");
   if (container) {
     container.innerHTML = posts.map((post) => post.toHTML()).join("");
+  } else {
+    console.error("Posts container not found.");
   }
 };
 
-// Executa a função para adicionar posts
 addPostsToContainer();
