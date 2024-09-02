@@ -1,5 +1,4 @@
 body {
-  font-family: Arial, sans-serif;
   background-color: #fafafa;
   display: flex;
   justify-content: center;
@@ -7,6 +6,9 @@ body {
   height: 100vh;
   margin: 0;
   flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .carousel-container {
@@ -34,13 +36,13 @@ body {
 }
 
 .postagem {
-  flex: 0 0 100%; /* Ajusta a largura para que cada postagem ocupe 100% da área visível */
+  flex: 0 0 100%;
   max-width: 500px;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   background-color: #fff;
   overflow: hidden;
-  margin: 0 10px; /* Espaço entre as postagens */
+  margin: 0 10px;
 }
 
 .cabecalho-postagem {
@@ -127,3 +129,22 @@ body {
 .next-btn {
   right: 10px;
 }
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
