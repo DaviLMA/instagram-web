@@ -12,13 +12,29 @@ body {
 }
 
 .icone-acao {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  transition: filter 0.3s;
+  transition: filter 0.3s, color 0.3s; /* Transition for color */
 }
 
 .icone-acao.curtido {
   filter: invert(42%) sepia(72%) saturate(2802%) hue-rotate(309deg)
     brightness(91%) contrast(104%);
+  color: red; /* Change color to red when liked */
+  animation: pulse 0.5s ease forwards; /* Apply pop animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .carousel-container {
@@ -99,12 +115,6 @@ body {
   align-items: center;
   gap: 10px;
   margin-bottom: 5px;
-}
-
-.icone-acao {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
 }
 
 .curtidas {
